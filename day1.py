@@ -35,7 +35,7 @@ def day1_1(lines):
 
 
 def main():
-    with open("input.txt") as f:
+    with open("input day1.txt") as f:
         lines = f.readlines()
 
     day1_1(lines)

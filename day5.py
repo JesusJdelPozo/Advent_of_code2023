@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def day4_0(lines):
+def day5_0(lines):
     def map_walk(init, idx):
         new_init = init
         i = map_indexes[idx] + 1

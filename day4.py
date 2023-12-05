@@ -2,7 +2,6 @@ import numpy as np
 
 def day_4_0_and_1(lines):
     winnings = [line.split(":")[1].split("|")[0].split(" ") for line in lines]
-    print(winnings)
     hands = [line.split(":")[1].split("|")[1].strip("\n").split(" ") for line in lines]
     cards = [card for hand in hands for card in hand if card != ""]
     cards_per_hand = 25

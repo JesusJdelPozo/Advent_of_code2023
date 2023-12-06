@@ -1,4 +1,5 @@
 import numpy as np
+from time import perf_counter
 
 
 def day5_0(lines):
@@ -51,34 +52,39 @@ def day5_1(lines):
         for i in range(map_indexes[j] + 1, map_indexes[j + 1] - 1):
             lines[i] = [int(numb) for numb in lines[i].split(" ")]
 
-    def inverse_map_walk(init, idx):
+    def inverse_map_walk(init, idx, min_range):
         new_init = init
         i = map_indexes[idx] + 1
         # print(idx, map_indexes[idx], init)
         while lines[i] != "":
             new_start, old_start, map_range = lines[i]
+
             if new_start <= init < new_start + map_range:
                 new_init = old_start + init - new_start
+                step_range = old_start + map_range - new_init
+                if step_range < min_range:
+                    # print("new_range", step_range, min_range, new_start, map_range, new_init)
+                    min_range = max([1, step_range])
                 break
             i += 1
 
         if idx == 0:
-            return new_init
+            return new_init, min_range
         else:
             idx = idx - 1
-            return inverse_map_walk(new_init, idx)
-    i = 69323680
+            return inverse_map_walk(new_init, idx, min_range)
+    i = 0
     flag = True
     while flag:
-        seed = inverse_map_walk(i, len(map_indexes) - 2)
+        min_range = 1000000000000000
+        seed, min_range = inverse_map_walk(i, len(map_indexes) - 2, min_range)
         for j in range(1, len(seeds), 2):
-            print(seed, i)
             if int(seeds[j]) <= seed < int(seeds[j]) + int(seeds[j + 1]):
                 print("result", i, seed)
                 flag = False
                 break
-
-        i += 1
+        # print("consumend", min_range)
+        i += min_range
         if np.mod(i, 10000000) == 0:
             print(i)
 
@@ -86,8 +92,9 @@ def day5_1(lines):
 def main():
     with open("input day5.txt") as f:
         lines = f.readlines()
-
+    t1 = perf_counter()
     day5_1(lines)
+    print(perf_counter() - t1)
 
 
 if __name__ == '__main__':

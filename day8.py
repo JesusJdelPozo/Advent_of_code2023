@@ -62,8 +62,8 @@ def main():
     tree_lefts = [line.split("=")[1].split(",")[0].strip(" (") for line in lines[1:] if line != ""]
     tree_rights = [line.split("=")[1].strip(")").split(",")[1].strip(" ") for line in lines[1:] if line != ""]
     tree = {key: Node(key, left, right) for key, left, right in zip(tree_keys, tree_lefts, tree_rights)}
-    day8_1(tree, directions)
     day8_0(tree, directions)
+    day8_1(tree, directions)
 
 
 if __name__ == '__main__':

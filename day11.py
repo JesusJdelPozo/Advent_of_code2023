@@ -28,8 +28,8 @@ def main():
             jj = min(j, galaxies[gg][1])
             jjg = max(j, galaxies[gg][1])
             ycrosings = 0
-            for xx in y_exp:
-                if xx in range(jj, jjg+1):
+            for yy in y_exp:
+                if yy in range(jj, jjg+1):
                     ycrosings += 1
 
             xdist = abs(i-galaxies[gg][0]) + xcrosings*expansion_factor - xcrosings

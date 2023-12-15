@@ -84,7 +84,6 @@ def main():
                 cycle_size = i-j
                 offset = j
                 flag = True
-                print(i, j, i-j)
                 break
 
         if flag:
@@ -92,15 +91,11 @@ def main():
         fields.append([field, i])
 
     fields = [field for field, j in fields]
-    offset_fields = fields[:offset]
     fields = fields[offset:]
-    print(len(fields), len(offset_fields), offset)
+
     cycle_number = (1_000_000_000 - offset) % cycle_size
     field2 = fields[cycle_number-1]
-    print(perf_counter() - t1)
     total = 0
-    # print(4*(perf_counter() - t1))
-    # print(field)
     for i in range(field2.shape[0]):
         for j in range(field2.shape[1]):
             if field2[j, i] == "O":

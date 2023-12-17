@@ -96,6 +96,7 @@ def main():
     pattern = get_pattern("input day16.txt")
     pattern = pattern.transpose()
     pos = (-1, 0, "r")
+    print("part one", day16_part_1(pos, pattern))
     positions_l = [(-1, i, "r") for i in range(pattern.shape[0])]
     positions_r = [(pattern.shape[0], i, "l") for i in range(pattern.shape[0])]
     positions_u = [(i, -1, "d") for i in range(pattern.shape[1])]
@@ -106,8 +107,8 @@ def main():
         e = day16_part_1(pos, pattern)
         if e > max_e:
             max_e = e
-    print(max_e)
-    print(day16_part_1(pos, pattern))
+    print("part two", max_e)
+
 
 
 if __name__ == '__main__':

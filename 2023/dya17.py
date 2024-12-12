@@ -9,6 +9,7 @@ DIRECTIONS = {"u": ["u", "l", "r"],
               "l": ["u", "d", "l"],
               "r": ["u", "d", "r"]}
 
+
 def read_pattern(lines):
     p = []
     for line in lines:
@@ -56,7 +57,7 @@ def is_valid(previous, new, current):
     if prev2[0] == 0 and prev2[1] == 0:
         v3 = "."
     if v1 == v2 and v2 == v3 and v3 == new[2]:
-        print(v1,v2,v3,new[2])
+        print(v1, v2, v3, new[2])
         return False
     else:
         return True
@@ -66,7 +67,7 @@ def main():
     pattern = get_pattern("test input.txt")
     pattern = np.int64(pattern.transpose())
     start = (0, 0, "d")
-    end = (pattern.shape[0]-1, pattern.shape[1]-1, "r")
+    end = (pattern.shape[0] - 1, pattern.shape[1] - 1, "r")
     tiles = queue.PriorityQueue()
     tiles.put((0, start))
     gscores = np.full((pattern.shape[0], pattern.shape[1]), np.inf)
@@ -87,7 +88,7 @@ def main():
                     total += pattern[step[0], step[1]]
                 field[step[0], step[1]] = total
 
-            print(total, "    total\n", field.transpose(), gscores[pattern.shape[0]-1,pattern.shape[1]-1])
+            print(total, "    total\n", field.transpose(), gscores[pattern.shape[0] - 1, pattern.shape[1] - 1])
             print("result", reconstruct_path(previous, tile, pattern))
             # break
         # path = reconstruct_path(previous, tile, pattern)
@@ -97,19 +98,18 @@ def main():
         # print(field.transpose())
         # total += pattern[tile[0], tile[1]]
         new_tiles = possible_jumps(tile, pattern)
-        print("1",new_tiles)
+        print("1", new_tiles)
         for new in new_tiles:
             if is_valid(previous, new, tile):
-                print("2",new_tiles)
+                print("2", new_tiles)
                 score = gscores[tile[0], tile[1]] + pattern[new[0], new[1]]
                 if score < gscores[new[0], new[1]]:
-                    print("3",new_tiles)
+                    print("3", new_tiles)
                     previous[new] = tile
                     gscores[new[0], new[1]] = score
-                    f = score #+ abs(new[0] - end[0]) + abs(new[1] - end[1])
+                    f = score  # + abs(new[0] - end[0]) + abs(new[1] - end[1])
                     new_entry = (f, new)
                     tiles.put(new_entry)
-
 
 
 if __name__ == '__main__':

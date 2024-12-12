@@ -6,11 +6,6 @@ def evaluate_operator(a: int, b: int, operator: str):
     return operations[operator]
 
 
-def evaluate_operator2(a: int, b: int, operator: str):
-    operations = {"+": a + b, "*": a * b, "|": int(str(a) + str(b))}
-    return operations[operator]
-
-
 def evaluate_result(numbers: list, operators: str):
     assert len(numbers) == len(operators) + 1, "The numbers and the operators don't match"
     result = int(numbers[0])
@@ -21,11 +16,7 @@ def evaluate_result(numbers: list, operators: str):
 
 
 def get_operators(nb_operators):
-    return [''.join(i) for i in product('+*|', repeat=nb_operators)]
-
-
-def get_operators2(nb_operators):
-    return [''.join(i) for i in product('+*|', repeat=nb_operators)]
+    return [''.join(i) for i in product('+*', repeat=nb_operators)]
 
 
 def is_valid(result, numbers, operators):

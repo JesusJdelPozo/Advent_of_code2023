@@ -4,8 +4,8 @@ if __name__ == '__main__':
     with open("input_day_9_1.txt", "r") as f:
         lines = f.readlines()
 
-    test = ["2333133121414131402"]
-    lines = test
+    # test = ["2333133121414131402"]
+    # lines = test
     lines = [c for c in lines[0]]
 
     values = lines[:: 2]
